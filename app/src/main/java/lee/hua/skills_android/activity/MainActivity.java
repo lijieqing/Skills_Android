@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ClockView clockView;
     private StringTagView tagView;
 
+    private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
+        @Override
+        public void onTagClickListener(TextView textView) {
+            Toast.makeText(MainActivity.this,textView.getText(),Toast.LENGTH_SHORT).show();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +50,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initView();
         nav.setNavigationItemSelectedListener(this);
     }
+    /**
+     * 初始化 view 数据
+     */
     private void initView(){
         clockView = new ClockView(this);
         tagView = new StringTagView(this);
-        stv.addTagClickListener(new StringTagView.TagClickListener() {
-            @Override
-            public void onTagClickListener(TextView textView) {
-                Toast.makeText(MainActivity.this,textView.getText(),Toast.LENGTH_SHORT).show();
-            }
-        });
+        stv.addTagClickListener(tagClickListener);
+        tagView.addTagClickListener(tagClickListener);
     }
 
     @Override
