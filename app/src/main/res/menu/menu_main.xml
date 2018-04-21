@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/custom_view" android:checkableBehavior="none">
+        <item android:id="@+id/view_clock" android:title="@string/custom_view_clock"/>
+        <item android:id="@+id/view_tag" android:title="@string/custom_view_tag"/>
+    </group>
+</menu>
