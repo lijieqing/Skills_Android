@@ -1,9 +1,9 @@
 package lee.hua.skills_android.activity;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -18,6 +18,7 @@ import lee.hua.skills_android.R;
 import lee.hua.skills_android.view.ClockView;
 import lee.hua.skills_android.view.DrawView;
 import lee.hua.skills_android.view.MeshView;
+import lee.hua.skills_android.view.SineWaveView;
 import lee.hua.skills_android.view.StringTagView;
 import lee.hua.skills_android.view.path.PathCut;
 import lee.hua.skills_android.view.path.PathSearch;
@@ -44,11 +45,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PathCut pathCut;
     private RegionClickView regionClick;
     private MeshView meshView;
+    private SineWaveView sineWaveView;
 
     private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
         @Override
         public void onTagClickListener(TextView textView) {
-            Toast.makeText(MainActivity.this,textView.getText(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, textView.getText(), Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -60,10 +62,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initView();
         nav.setNavigationItemSelectedListener(this);
     }
+
     /**
      * 初始化 view 数据
      */
-    private void initView(){
+    private void initView() {
         clockView = new ClockView(this);
         tagView = new StringTagView(this);
         stv.addTagClickListener(tagClickListener);
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pathSearch = new PathSearch(this);
         regionClick = new RegionClickView(this);
         meshView = new MeshView(this);
+        sineWaveView = new SineWaveView(this);
     }
 
     @Override
@@ -86,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.view_tag:
                 content.addView(tagView);
+                break;
+            case R.id.view_sine:
+                content.addView(sineWaveView);
                 break;
             case R.id.view_mesh:
                 content.addView(meshView);
