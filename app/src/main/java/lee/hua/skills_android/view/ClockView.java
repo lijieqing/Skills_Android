@@ -69,7 +69,7 @@ public class ClockView extends View {
     private void drawDial(Canvas canvas){
         canvas.save();
         //绘制圆盘
-        mPaint.setColor(Color.DKGRAY);
+        mPaint.setColor(Color.WHITE);
         mPaint.setStrokeWidth(3);
         canvas.drawCircle(0, 0, radius, mPaint);
 
@@ -104,7 +104,7 @@ public class ClockView extends View {
         //绘制秒针
         canvas.save();
         canvas.rotate(secondDegree);
-        mPaint.setColor(Color.DKGRAY);
+        mPaint.setColor(Color.WHITE);
         canvas.drawLine(0,0,0,-radius+radius/4,mPaint);
         canvas.restore();
         //绘制分针

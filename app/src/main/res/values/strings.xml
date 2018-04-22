@@ -3,4 +3,8 @@
     <string name="main_index">Android 基础功能集合</string>
     <string name="custom_view_clock">自定义时钟</string>
     <string name="custom_view_tag">自定义 Tag 标签</string>
+    <string name="custom_view_draw">自定义画板</string>
+    <string name="path_rotate">旋转的飞机</string>
+    <string name="path_search">搜索动画</string>
+    <string name="path_region">异形区域点击</string>
 </resources>

@@ -16,7 +16,11 @@ import org.xutils.x;
 
 import lee.hua.skills_android.R;
 import lee.hua.skills_android.view.ClockView;
+import lee.hua.skills_android.view.DrawView;
 import lee.hua.skills_android.view.StringTagView;
+import lee.hua.skills_android.view.path.PathCut;
+import lee.hua.skills_android.view.path.PathSearch;
+import lee.hua.skills_android.view.path.RegionClickView;
 
 /**
  * @author lijie
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ClockView clockView;
     private StringTagView tagView;
+    private DrawView drawView;
+    private PathSearch pathSearch;
+    private PathCut pathCut;
+    private RegionClickView regionClick;
 
     private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
         @Override
@@ -58,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tagView = new StringTagView(this);
         stv.addTagClickListener(tagClickListener);
         tagView.addTagClickListener(tagClickListener);
+        drawView = new DrawView(this);
+        pathCut = new PathCut(this);
+        pathSearch = new PathSearch(this);
+        regionClick = new RegionClickView(this);
     }
 
     @Override
@@ -71,6 +83,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.view_tag:
                 content.addView(tagView);
+                break;
+            case R.id.view_draw:
+                content.addView(drawView);
+                break;
+            case R.id.path_search:
+                content.addView(pathSearch);
+                break;
+            case R.id.path_region:
+                content.addView(regionClick);
+                break;
+            case R.id.path_rotate:
+                content.addView(pathCut);
                 break;
             default:
                 Log.e("MainActivity", "未指定 ID");

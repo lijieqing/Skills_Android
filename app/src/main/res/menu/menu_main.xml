@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/custom_view" android:checkableBehavior="none">
-        <item android:id="@+id/view_clock" android:title="@string/custom_view_clock"/>
-        <item android:id="@+id/view_tag" android:title="@string/custom_view_tag"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/custom_view"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/view_clock"
+            android:title="@string/custom_view_clock" />
+        <item
+            android:id="@+id/view_tag"
+            android:title="@string/custom_view_tag" />
+        <item
+            android:id="@+id/view_draw"
+            android:title="@string/custom_view_draw" />
+    </group>
+    <group
+        android:id="@+id/custom_view_path"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/path_rotate"
+            android:title="@string/path_rotate" />
+        <item
+            android:id="@+id/path_search"
+            android:title="@string/path_search" />
+        <item
+            android:id="@+id/path_region"
+            android:title="@string/path_region" />
     </group>
 </menu>

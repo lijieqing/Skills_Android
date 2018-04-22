@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import lee.hua.skills_android.R;
+import lee.hua.skills_android.utils.DisplayUtils;
 
 /**
  * 自定义 Tag ViewGroup，效果：将字符串集合传入，分割为Tag，并自动换行
@@ -57,9 +58,9 @@ public class StringTagView extends ViewGroup {
             margin = array.getInteger(R.styleable.StringTagView_tagMargin, 10);
             array.recycle();
         } else {
-            textSize = 14;
+            textSize = DisplayUtils.sp2px(getContext(),14);
             bgColor = Color.LTGRAY;
-            margin = 10;
+            margin = (int) DisplayUtils.dp2px(getContext(),10);
         }
         datas = new ArrayList<>();
         String[] values = new String[]{"飞狐外传", "雪山飞狐", "连城诀", "天龙八部", "射雕英雄传", "鹿鼎记",
