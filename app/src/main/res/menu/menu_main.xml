@@ -13,6 +13,9 @@
         <item
             android:id="@+id/view_draw"
             android:title="@string/custom_view_draw" />
+        <item
+            android:id="@+id/view_mesh"
+            android:title="@string/view_mesh" />
     </group>
     <group
         android:id="@+id/custom_view_path"

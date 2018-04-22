@@ -7,4 +7,5 @@
     <string name="path_rotate">旋转的飞机</string>
     <string name="path_search">搜索动画</string>
     <string name="path_region">异形区域点击</string>
+    <string name="view_mesh">扭曲图片</string>
 </resources>

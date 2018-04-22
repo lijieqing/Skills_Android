@@ -17,6 +17,7 @@ import org.xutils.x;
 import lee.hua.skills_android.R;
 import lee.hua.skills_android.view.ClockView;
 import lee.hua.skills_android.view.DrawView;
+import lee.hua.skills_android.view.MeshView;
 import lee.hua.skills_android.view.StringTagView;
 import lee.hua.skills_android.view.path.PathCut;
 import lee.hua.skills_android.view.path.PathSearch;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PathSearch pathSearch;
     private PathCut pathCut;
     private RegionClickView regionClick;
+    private MeshView meshView;
 
     private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
         @Override
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         pathCut = new PathCut(this);
         pathSearch = new PathSearch(this);
         regionClick = new RegionClickView(this);
+        meshView = new MeshView(this);
     }
 
     @Override
@@ -83,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.view_tag:
                 content.addView(tagView);
+                break;
+            case R.id.view_mesh:
+                content.addView(meshView);
                 break;
             case R.id.view_draw:
                 content.addView(drawView);
