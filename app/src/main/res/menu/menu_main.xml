@@ -32,4 +32,17 @@
             android:id="@+id/path_region"
             android:title="@string/path_region" />
     </group>
+    <group
+        android:id="@+id/fragment_system"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/show_app_info"
+            android:title="@string/show_app_info" />
+        <item
+            android:id="@+id/show_sys_app_info"
+            android:title="@string/show_sys_app_info" />
+        <item
+            android:id="@+id/show_third_app_info"
+            android:title="@string/show_third_app_info" />
+    </group>
 </menu>

@@ -6,3 +6,5 @@
 > 自定义 Tag 集合
 ### Path 相关技巧
 > 包括PathMeasure 相关方法(getPosTan、getSegment)、Region对象的使用
+### PackageManager使用
+>应用列表展示，包括系统应用展示、三方应用展示

@@ -15,6 +15,7 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import lee.hua.skills_android.R;
+import lee.hua.skills_android.fragment.AppInfoFragment;
 import lee.hua.skills_android.view.ClockView;
 import lee.hua.skills_android.view.DrawView;
 import lee.hua.skills_android.view.MeshView;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private RegionClickView regionClick;
     private MeshView meshView;
     private SineWaveView sineWaveView;
+    private AppInfoFragment appInfoFragment;
 
     private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
         @Override
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         regionClick = new RegionClickView(this);
         meshView = new MeshView(this);
         sineWaveView = new SineWaveView(this);
+
+        appInfoFragment = new AppInfoFragment();
     }
 
     @Override
@@ -84,6 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int itemId = item.getItemId();
         //移除所有布局
         content.removeAllViews();
+        if (appInfoFragment.isAdded()) {
+            getFragmentManager().beginTransaction().remove(appInfoFragment).commit();
+        }
         switch (itemId) {
             case R.id.view_clock:
                 content.addView(clockView);
@@ -108,6 +115,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.path_rotate:
                 content.addView(pathCut);
+                break;
+            case R.id.show_app_info:
+                appInfoFragment.setMode(AppInfoFragment.ALL_APP);
+                getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
+                break;
+            case R.id.show_sys_app_info:
+                appInfoFragment.setMode(AppInfoFragment.SYS_APP);
+                getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
+                break;
+            case R.id.show_third_app_info:
+                appInfoFragment.setMode(AppInfoFragment.THIRD_APP);
+                getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
                 break;
             default:
                 Log.e("MainActivity", "未指定 ID");

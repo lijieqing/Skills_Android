@@ -9,4 +9,7 @@
     <string name="path_region">异形区域点击</string>
     <string name="view_mesh">扭曲图片</string>
     <string name="custom_view_sine">正弦运动动画</string>
+    <string name="show_app_info">展示所有应用</string>
+    <string name="show_sys_app_info">展示系统应用</string>
+    <string name="show_third_app_info">展示第三方应用信息</string>
 </resources>
