@@ -1,11 +1,15 @@
 package lee.hua.skills_android.activity;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +40,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @ViewInject(R.id.main_content)
     private FrameLayout content;
 
-    @ViewInject(R.id.stv)
-    private StringTagView stv;
+    @ViewInject(R.id.tv_content)
+    private TextView tvContent;
+
 
     private ClockView clockView;
     private StringTagView tagView;
@@ -71,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void initView() {
         clockView = new ClockView(this);
         tagView = new StringTagView(this);
-        stv.addTagClickListener(tagClickListener);
         tagView.addTagClickListener(tagClickListener);
         drawView = new DrawView(this);
         pathCut = new PathCut(this);
@@ -86,12 +90,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        //移除所有布局
-        content.removeAllViews();
+        if (content.getChildCount() > 1) {
+            //移除所有布局
+            for (int i = 0; i < content.getChildCount(); i++) {
+                if (i == 0) {
+                    continue;
+                }
+                content.removeViewAt(i);
+            }
+        }
         if (appInfoFragment.isAdded()) {
             getFragmentManager().beginTransaction().remove(appInfoFragment).commit();
         }
         switch (itemId) {
+            case R.id.transition_animation:
+                Intent intent = new Intent(this, TransitionAnimActivity.class);
+                Pair<View, String> share = Pair.create((View) tvContent, "tv_content");
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this,
+                        share).toBundle());
+                break;
             case R.id.view_clock:
                 content.addView(clockView);
                 break;

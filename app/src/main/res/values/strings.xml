@@ -12,4 +12,5 @@
     <string name="show_app_info">展示所有应用</string>
     <string name="show_sys_app_info">展示系统应用</string>
     <string name="show_third_app_info">展示第三方应用信息</string>
+    <string name="transition_animation">过渡动画</string>
 </resources>

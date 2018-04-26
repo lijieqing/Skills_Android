@@ -20,6 +20,13 @@
             android:title="@string/view_mesh" />
     </group>
     <group
+        android:id="@+id/android_animation"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/transition_animation"
+            android:title="@string/transition_animation" />
+    </group>
+    <group
         android:id="@+id/custom_view_path"
         android:checkableBehavior="none">
         <item

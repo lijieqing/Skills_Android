@@ -27,7 +27,7 @@ public class StringTagView extends ViewGroup {
 
     private float textSize;
     private int bgColor;
-    private int margin = 10;
+    private int margin = 20;
     private int mWidth;
 
     private TagClickListener tagClickListener;

@@ -6,19 +6,12 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:transitionName="tv_content"
         android:gravity="center"
         android:text="@string/main_index"
         android:textSize="18sp" />
 
-    <lee.hua.skills_android.view.StringTagView
-        android:id="@+id/stv"
-        app:tagBackgroundColor="@color/colorAccent"
-        app:tagTextSize="18sp"
-        app:tagMargin="30"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </lee.hua.skills_android.view.StringTagView>
 </FrameLayout>
