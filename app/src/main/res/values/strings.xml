@@ -13,4 +13,6 @@
     <string name="show_sys_app_info">展示系统应用</string>
     <string name="show_third_app_info">展示第三方应用信息</string>
     <string name="transition_animation">过渡动画</string>
+    <string name="gesture_simple">简单手势检测器</string>
+    <string name="double_click_clear">双击清除</string>
 </resources>

@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TransitionAnimActivity"></activity>
+        <activity android:name=".activity.TransitionAnimActivity" />
+        <activity android:name=".activity.GestureDetectorActivity"></activity>
     </application>
 
 </manifest>

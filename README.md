@@ -10,3 +10,5 @@
 > 应用列表展示，包括系统应用展示、三方应用展示
 ### 动画
 > 添加 TransitionAnimation 过渡动画
+### 手势检测
+> 新增GestureDetector检测器

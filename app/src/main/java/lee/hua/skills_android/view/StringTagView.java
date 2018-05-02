@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class StringTagView extends ViewGroup {
     private int mWidth;
 
     private TagClickListener tagClickListener;
+
+    private int mLastX, mLastY, mLastXIntercept, mLastYIntercept;
 
     public StringTagView(Context context) {
         super(context);
@@ -58,9 +61,9 @@ public class StringTagView extends ViewGroup {
             margin = array.getInteger(R.styleable.StringTagView_tagMargin, 10);
             array.recycle();
         } else {
-            textSize = DisplayUtils.sp2px(getContext(),14);
+            textSize = DisplayUtils.sp2px(getContext(), 28);
             bgColor = Color.LTGRAY;
-            margin = (int) DisplayUtils.dp2px(getContext(),10);
+            margin = (int) DisplayUtils.dp2px(getContext(), 10);
         }
         datas = new ArrayList<>();
         String[] values = new String[]{"飞狐外传", "雪山飞狐", "连城诀", "天龙八部", "射雕英雄传", "鹿鼎记",
@@ -92,7 +95,7 @@ public class StringTagView extends ViewGroup {
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (tagClickListener!=null){
+                    if (tagClickListener != null) {
                         tagClickListener.onTagClickListener((TextView) v);
                     }
                 }
@@ -103,10 +106,68 @@ public class StringTagView extends ViewGroup {
 
     /**
      * 添加标签点击监听器
+     *
      * @param tagClickListener 监听器
      */
-    public void addTagClickListener(TagClickListener tagClickListener){
+    public void addTagClickListener(TagClickListener tagClickListener) {
         this.tagClickListener = tagClickListener;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        boolean intercept = false;
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                intercept = false;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int dx = x - mLastXIntercept;
+                int dy = y - mLastYIntercept;
+                if (Math.abs(dy) > Math.abs(dx)) {
+                    intercept = true;
+                } else {
+                    intercept = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                intercept = false;
+                break;
+            default:
+                break;
+        }
+
+        mLastX = x;
+        mLastY = y;
+        mLastXIntercept = x;
+        mLastYIntercept = y;
+
+        return intercept;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int dx = x - mLastX;
+                int dy = y - mLastY;
+                scrollBy(0, -dy);
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            default:
+                break;
+        }
+        mLastX = x;
+        mLastY = y;
+        return true;
     }
 
     @Override
@@ -169,9 +230,10 @@ public class StringTagView extends ViewGroup {
         }
     }
 
-    public interface TagClickListener{
+    public interface TagClickListener {
         /**
          * 标签点击监听回调
+         *
          * @param textView 被点击的 view
          */
         void onTagClickListener(TextView textView);

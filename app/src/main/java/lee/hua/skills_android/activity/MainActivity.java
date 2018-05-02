@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Pair;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @ViewInject(R.id.tv_content)
     private TextView tvContent;
+
+    @ViewInject(R.id.main_root)
+    private DrawerLayout drawerLayout;
 
 
     private ClockView clockView;
@@ -109,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this,
                         share).toBundle());
                 break;
+            case R.id.gesture_simple:
+                Intent gsIntent = new Intent(this, GestureDetectorActivity.class);
+                startActivity(gsIntent);
+                break;
             case R.id.view_clock:
                 content.addView(clockView);
                 break;
@@ -149,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Log.e("MainActivity", "未指定 ID");
                 break;
         }
+        drawerLayout.closeDrawers();
         return true;
     }
 }
