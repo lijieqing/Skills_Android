@@ -12,3 +12,5 @@
 > 添加 TransitionAnimation 过渡动画
 ### 手势检测
 > 新增GestureDetector检测器
+### 桌面控件
+> RemoteView 实现桌面控件

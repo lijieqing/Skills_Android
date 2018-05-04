@@ -18,7 +18,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.TransitionAnimActivity" />
-        <activity android:name=".activity.GestureDetectorActivity"></activity>
+        <activity android:name=".activity.GestureDetectorActivity" />
+
+        <receiver android:name=".HuaWidget">
+            <intent-filter>
+                <action android:name="lee.hua.click" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hua_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
