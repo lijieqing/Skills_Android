@@ -47,15 +47,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @ViewInject(R.id.main_root)
     private DrawerLayout drawerLayout;
 
-
+    /**
+     * 仿时钟view
+     */
     private ClockView clockView;
+    /**
+     * String Tag view 集合
+     */
     private StringTagView tagView;
+    /**
+     * 画板
+     */
     private DrawView drawView;
+    /**
+     * 搜索动画
+     */
     private PathSearch pathSearch;
+    /**
+     * 旋转的飞机
+     */
     private PathCut pathCut;
+    /**
+     * 异形区域点击
+     */
     private RegionClickView regionClick;
+    /**
+     * 水波纹效果
+     */
     private MeshView meshView;
+    /**
+     * 正弦运动动画
+     */
     private SineWaveView sineWaveView;
+    /**
+     * 应用展示 Fragment
+     */
     private AppInfoFragment appInfoFragment;
 
     private StringTagView.TagClickListener tagClickListener = new StringTagView.TagClickListener() {
@@ -70,26 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         x.view().inject(this);
 
-        initView();
         nav.setNavigationItemSelectedListener(this);
     }
 
-    /**
-     * 初始化 view 数据
-     */
-    private void initView() {
-        clockView = new ClockView(this);
-        tagView = new StringTagView(this);
-        tagView.addTagClickListener(tagClickListener);
-        drawView = new DrawView(this);
-        pathCut = new PathCut(this);
-        pathSearch = new PathSearch(this);
-        regionClick = new RegionClickView(this);
-        meshView = new MeshView(this);
-        sineWaveView = new SineWaveView(this);
-
-        appInfoFragment = new AppInfoFragment();
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -103,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 content.removeViewAt(i);
             }
         }
-        if (appInfoFragment.isAdded()) {
+        if (appInfoFragment!=null && appInfoFragment.isAdded()) {
             getFragmentManager().beginTransaction().remove(appInfoFragment).commit();
         }
         switch (itemId) {
@@ -118,38 +127,66 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(gsIntent);
                 break;
             case R.id.view_clock:
+                if (clockView == null) {
+                    clockView = new ClockView(this);
+                }
                 content.addView(clockView);
                 break;
             case R.id.view_tag:
+                if (tagView == null) {
+                    tagView = new StringTagView(this);
+                    tagView.addTagClickListener(tagClickListener);
+                }
                 content.addView(tagView);
                 break;
             case R.id.view_sine:
+                if (sineWaveView == null) {
+                    sineWaveView = new SineWaveView(this);
+                }
                 content.addView(sineWaveView);
                 break;
             case R.id.view_mesh:
+                if (meshView == null) {
+                    meshView = new MeshView(this);
+                }
                 content.addView(meshView);
                 break;
             case R.id.view_draw:
+                if (drawView==null){
+                    drawView = new DrawView(this);
+                }
                 content.addView(drawView);
                 break;
             case R.id.path_search:
+                if (pathSearch==null){
+                    pathSearch = new PathSearch(this);
+                }
                 content.addView(pathSearch);
                 break;
             case R.id.path_region:
+                if (regionClick==null){
+                    regionClick = new RegionClickView(this);
+                }
                 content.addView(regionClick);
                 break;
             case R.id.path_rotate:
+                if (pathCut==null){
+                    pathCut = new PathCut(this);
+                }
                 content.addView(pathCut);
                 break;
             case R.id.show_app_info:
+                appInfoFragment = new AppInfoFragment();
                 appInfoFragment.setMode(AppInfoFragment.ALL_APP);
                 getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
                 break;
             case R.id.show_sys_app_info:
+                appInfoFragment = new AppInfoFragment();
                 appInfoFragment.setMode(AppInfoFragment.SYS_APP);
                 getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
                 break;
             case R.id.show_third_app_info:
+                appInfoFragment = new AppInfoFragment();
                 appInfoFragment.setMode(AppInfoFragment.THIRD_APP);
                 getFragmentManager().beginTransaction().add(R.id.main_content, appInfoFragment).commit();
                 break;
