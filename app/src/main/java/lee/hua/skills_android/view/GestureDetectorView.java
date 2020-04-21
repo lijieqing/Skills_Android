@@ -6,12 +6,14 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 /**
  * 触摸手势检测view GestureDetector基本使用
  *
  * @author lijie
  */
-public class GestureDetectorView extends android.support.v7.widget.AppCompatButton {
+public class GestureDetectorView extends AppCompatButton {
     public static final String TAG = "GestureDetectorView";
     private GestureDetector gestureDetector;
     private IGestureCallback callback;

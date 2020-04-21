@@ -1,10 +1,11 @@
 package lee.hua.skills_android.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Window;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.x;

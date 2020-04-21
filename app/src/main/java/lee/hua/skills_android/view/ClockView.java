@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -26,12 +25,12 @@ public class ClockView extends View {
         init();
     }
 
-    public ClockView(Context context, @Nullable AttributeSet attrs) {
+    public ClockView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public ClockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ClockView(Context context,AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

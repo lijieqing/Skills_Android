@@ -6,15 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import lee.hua.skills_android.R;
 
 
 /**
@@ -24,10 +23,11 @@ import lee.hua.skills_android.R;
 public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayoutListener {
     Paint mPaint;
     int width, height;
-    float progressX, sinY;
+    float sinY;
     Path sinePath;
     List<SineClass> sineList;
-    int circleNum = 10;
+    int circleNum = 40;
+    ValueAnimator animator;
 
     public SineWaveView(Context context) {
         super(context);
@@ -58,16 +58,14 @@ public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayou
         if (sineList == null) {
             canvas.drawCircle(width / 2, 0, width / 3, mPaint);
         } else {
-            canvas.drawColor(Color.DKGRAY);
-
-            mPaint.setColor(Color.WHITE);
+            //canvas.drawColor(Color.WHITE);
+            canvas.drawColor(Color.argb(0, 100, 182, 218));
             mPaint.setStyle(Paint.Style.STROKE);
-            canvas.drawPath(sinePath, mPaint);
-
-            mPaint.setColor(getResources().getColor(R.color.tick_yellow));
             mPaint.setStyle(Paint.Style.FILL);
+
             for (SineClass sineClass : sineList) {
                 sinY = (float) (sineClass.sineA * Math.sin(sineClass.sineW * sineClass.sineX));
+                mPaint.setColor(sineClass.color);
                 canvas.drawCircle(sineClass.sineX, sinY, sineClass.radius, mPaint);
             }
 
@@ -80,55 +78,48 @@ public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayou
     private void init() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        //开启硬件加速
+        setLayerType(LAYER_TYPE_HARDWARE, null);
     }
 
     /**
      * 开始动画
      */
     private void startAnim() {
-        sineList = new ArrayList<>();
-        float sinA = height / 4 - 10;
-        float sineT = width / 8;
-        float sineW = (float) (2 * Math.PI / sineT);
+        if (animator == null) {
+            sineList = new ArrayList<>();
+            float sinA = height / 4 - 10;
+            float sineT = width / 8;
+            float sineW = (float) (2 * Math.PI / sineT);
 
-        for (int i = 0; i < circleNum; i++) {
-            SineClass sc = new SineClass(sinA, sineT, 10 + i);
-            sineList.add(sc);
-        }
-
-        sinePath = new Path();
-        sinePath.moveTo(0, 0);
-        for (int i = 0; i < width; i++) {
-            sinePath.lineTo(i, (float) (sinA * Math.sin(sineW * i)));
-        }
-
-        System.out.println("sineA ---------- " + (height / 2 - 10));
-        System.out.println("sineT ---------- " + width / 4);
-        ValueAnimator animator = ValueAnimator.ofFloat(0, width);
-        animator.setDuration(5 * 1000);
-        animator.setRepeatCount(-1);
-        animator.setStartDelay(500);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                boolean reset = true;
-                for (SineClass sineClass : sineList) {
-                    if (sineClass.sineX < width) {
-                        reset = false;
-                    }
-                }
-                if (reset) {
-                    progressX = 0;
-                }
-
-                progressX++;
-                for (SineClass sineClass : sineList) {
-                    sineClass.updateSineX();
-                }
-                postInvalidate();
+            for (int i = 0; i < circleNum; i++) {
+                SineClass sc = new SineClass(sinA, sineT, 10 + i);
+                sineList.add(sc);
             }
-        });
-        animator.start();
+
+            sinePath = new Path();
+            sinePath.moveTo(0, 0);
+            for (int i = 0; i < width; i++) {
+                sinePath.lineTo(i, (float) (sinA * Math.sin(sineW * i)));
+            }
+
+            System.out.println("sineA ---------- " + (height / 2 - 10));
+            System.out.println("sineT ---------- " + width / 4);
+            animator = ValueAnimator.ofFloat(0, width);
+            animator.setDuration(8 * 1000);
+            animator.setRepeatCount(-1);
+            animator.setStartDelay(500);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    for (SineClass sineClass : sineList) {
+                        sineClass.updateX();
+                    }
+                    postInvalidate();
+                }
+            });
+            animator.start();
+        }
     }
 
     @Override
@@ -148,6 +139,8 @@ public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayou
         super.onDetachedFromWindow();
         //移除布局完成监听器
         getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        //关闭硬件加速
+        //setLayerType(LAYER_TYPE_SOFTWARE, mPaint);
     }
 
     /**
@@ -170,17 +163,39 @@ public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayou
          * 圆点半径
          */
         float radius;
+        /**
+         * 随机颜色
+         */
+        int color;
+        private int[] colors = new int[]{
+                Color.BLACK,
+                Color.DKGRAY,
+                Color.GRAY,
+                Color.LTGRAY,
+                Color.RED,
+                Color.GREEN,
+                Color.BLUE,
+                Color.YELLOW,
+                Color.CYAN,
+        };
 
-        public SineClass(float sineA, float sineT, float radius) {
+        SineClass(float sineA, float sineT, float radius) {
             this.sineA = sineA;
             this.sineT = sineT;
             this.sineW = (float) (2 * Math.PI / sineT);
-            this.randomDIF = (float) (50f + Math.random() * 50);
-            this.radius = radius;
+            this.randomDIF = (Math.random() * 10 > 5) ? (float) (Math.random() * width) : -(float) (Math.random() * width);
+            this.radius = (float) (Math.random() * 15 + 5f);
+            sineX = randomDIF;
+            color = colors[(int) ((colors.length - 1) * Math.random())];
+            // color = colors[3];
         }
 
-        public void updateSineX() {
-            sineX = progressX - randomDIF;
+        void updateX() {
+            if (sineX < width) {
+                sineX = sineX + 3;
+            } else {
+                sineX = 0;
+            }
         }
     }
 }
