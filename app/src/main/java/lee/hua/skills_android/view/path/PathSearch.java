@@ -24,7 +24,15 @@ public class PathSearch extends View {
     ValueAnimator animator;
 
     public PathSearch(Context context) {
-        super(context);
+        this(context, null);
+    }
+
+    public PathSearch(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public PathSearch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(15);
@@ -45,14 +53,6 @@ public class PathSearch extends View {
             }
         });
         animator.start();
-    }
-
-    public PathSearch(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public PathSearch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     @Override

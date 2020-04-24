@@ -186,8 +186,8 @@ public class SineWaveView extends View implements ViewTreeObserver.OnGlobalLayou
             this.randomDIF = (Math.random() * 10 > 5) ? (float) (Math.random() * width) : -(float) (Math.random() * width);
             this.radius = (float) (Math.random() * 15 + 5f);
             sineX = randomDIF;
-            color = colors[(int) ((colors.length - 1) * Math.random())];
-            // color = colors[3];
+            //color = colors[(int) ((colors.length - 1) * Math.random())];
+            color = colors[3];
         }
 
         void updateX() {

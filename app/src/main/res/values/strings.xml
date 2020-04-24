@@ -15,4 +15,5 @@
     <string name="transition_animation">过渡动画</string>
     <string name="gesture_simple">简单手势检测器</string>
     <string name="double_click_clear">双击清除</string>
+    <string name="str_osd">峰米 OSD 画面测试</string>
 </resources>
