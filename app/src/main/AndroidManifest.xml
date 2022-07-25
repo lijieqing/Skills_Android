@@ -9,29 +9,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar">
-        <activity android:name=".activity.LonelyActivity">
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
-        <activity android:name=".activity.TransitionAnimActivity" />
-        <activity android:name=".activity.GestureDetectorActivity" />
-
-        <receiver android:name=".HuaWidget">
-            <intent-filter>
-                <action android:name="lee.hua.click" />
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/hua_widget_info" />
-        </receiver>
     </application>
 
 </manifest>

@@ -3,58 +3,12 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-//            For Mi User
-//            storeFile file('/Users/lijie/sys-key/sls.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            For Feng Mi Factory
-//            storeFile file('/Users/lijie/sys-key/batman-sys.jks')
-//            keyAlias 'androiddebug'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            For Feng Mi 18
-//            storeFile file('/Users/lijie/sys-key/formovie_os_root.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            storeFile file('/Users/lijie/sys-key/fm-server.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
             storeFile file('/Users/lijie/sys-key/p_factory.keystore')
             keyAlias 'androiddebugkey'
             keyPassword 'android'
             storePassword 'android'
         }
         release {
-//            For Mi User
-//            storeFile file('/Users/lijie/sys-key/sls.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            For Feng Mi Factory
-//            storeFile file('/Users/lijie/sys-key/batman-sys.jks')
-//            keyAlias 'androiddebug'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            For Feng Mi 18
-//            storeFile file('/Users/lijie/sys-key/formovie_os_root.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
-//            storeFile file('/Users/lijie/sys-key/fm-server.keystore')
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
-//            storePassword 'android'
-
             storeFile file('/Users/lijie/sys-key/p_factory.keystore')
             keyAlias 'androiddebugkey'
             keyPassword 'android'
@@ -80,14 +34,4 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'org.xutils:xutils:3.5.0'
-    implementation 'lee.hua.xmlparse:xmlparse:2.4.3'
-    implementation 'com.android.support:design:26.1.0'
 }
