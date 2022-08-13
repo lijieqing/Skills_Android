@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/lijie/workspace/Skills_Android/lijieqing.keystore')
+            storePassword 'github'
+            keyAlias 'lijieqing.keystore'
+            keyPassword 'github'
+        }
+    }
     compileSdkVersion 31
     buildToolsVersion "30.0.2"
 
@@ -14,12 +22,23 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            version '3.10.2'
+            path 'src/main/jni/CMakeLists.txt'
         }
     }
 

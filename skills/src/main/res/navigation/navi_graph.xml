@@ -11,9 +11,16 @@
         <action
             android:id="@+id/action_homeFragment_to_mediaFragment"
             app:destination="@id/mediaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_nativeFragment"
+            app:destination="@id/nativeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mediaFragment"
         android:name="hua.lee.skills.fragment.MediaFragment"
         android:label="MediaFragment" />
+    <fragment
+        android:id="@+id/nativeFragment"
+        android:name="hua.lee.skills.fragment.NativeFragment"
+        android:label="NativeFragment" />
 </navigation>

@@ -27,6 +27,12 @@ public class HomeFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_mediaFragment);
             }
         });
+        binding.btnToJni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_nativeFragment);
+            }
+        });
         return binding.getRoot();
     }
 }
