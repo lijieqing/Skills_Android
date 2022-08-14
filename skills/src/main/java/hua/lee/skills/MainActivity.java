@@ -1,10 +1,12 @@
 package hua.lee.skills;
 
+import android.os.Bundle;
+import android.os.Looper;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
 import hua.lee.skills.databinding.ActivityMainBinding;
+import hua.lee.skills.performance.LooperWatch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding =  ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         requestPermissions(new String[]{
@@ -21,5 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.INTERNET",
         }, 0);
+
+        LooperWatch.startWatch(Looper.getMainLooper(), 300, 10);
     }
 }
