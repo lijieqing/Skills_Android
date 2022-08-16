@@ -1,3 +1,7 @@
+个人博客信息
+* [CSDN](https://blog.csdn.net/lijie2664989?type=blog)
+* [掘金](https://juejin.cn/user/2488950054453613/posts)
+
 ## Android 技巧总结
 
 ### 自定义 View
