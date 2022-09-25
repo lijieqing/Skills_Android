@@ -5,7 +5,7 @@
 
 
 int add(JNIEnv *env, jclass clazz, jint x, jint y) {
-    return x + y;
+    return (x + y) * 10;
 }
 
 static JNINativeMethod nativeMethods[] = {
@@ -16,7 +16,7 @@ static JNINativeMethod nativeMethods[] = {
 
 JNIEXPORT jint
 JNI_OnLoad(JavaVM *vm, void * /* reserved */) {
-    JNIEnv *env = NULL;
+    JNIEnv *env = nullptr;
     jint result = -1;
     jclass clazz;
 
@@ -24,11 +24,11 @@ JNI_OnLoad(JavaVM *vm, void * /* reserved */) {
         __android_log_print(ANDROID_LOG_DEBUG, TAG, "ERROR: GetEnv failed\n");
         return result;
     }
-    if (env == NULL) {
+    if (env == nullptr) {
         return result;
     }
     clazz = env->FindClass(MATH_JNI_CLASS);
-    if (clazz == NULL) {
+    if (clazz == nullptr) {
         __android_log_print(ANDROID_LOG_DEBUG, TAG, "Can't find %s", MATH_JNI_CLASS);
         return result;
     };
